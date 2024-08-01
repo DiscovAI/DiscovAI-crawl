@@ -1,0 +1,41 @@
+{
+  "name": "discovai-crawl",
+  "version": "1.0.0",
+  "description": "scraper api with playwright",
+  "main": "api.ts",
+  "private": "true",
+  "scripts": {
+    "start": "node dist/api.js",
+    "build": "tsc",
+    "dev": "nodemon"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "@ai-sdk/openai": "^0.0.40",
+    "@aws-sdk/client-s3": "^3.621.0",
+    "@langchain/textsplitters": "^0.0.3",
+    "@mozilla/readability": "^0.5.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@types/jsdom": "^21.1.7",
+    "ai": "^3.2.44",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "joplin-turndown-plugin-gfm": "^1.0.12",
+    "jsdom": "^24.1.1",
+    "playwright": "^1.45.0",
+    "random-useragent": "^0.5.0",
+    "slug": "^9.1.0",
+    "turndown": "^7.2.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.14.9",
+    "@types/random-useragent": "^0.3.3",
+    "nodemon": "^3.1.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.2"
+  }
+}
