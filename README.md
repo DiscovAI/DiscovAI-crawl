@@ -1,43 +1,58 @@
-# DiscovAI Crawl API
+# DiscovAI Crawl API 🕷️🔍
 
-🚧**WIP**🚧
+> One API to scrape everything you need from URLs for your AI tool and vector database.
 
----
+🚧 **Work in Progress** 🚧
 
-one api to scrape everything from urls you need for your AI tool or vector database.
+## 🌟 Features
 
-```js
-{
-  clean_html,
-    LLM_friendly_markdown,
-    clean_text,
-    screenshot_url,
-    llm_extracts_key_info,
-    llm_summaried_detail,
-    embeddings;
-}
-```
+Our API provides a comprehensive suite of data extraction and processing capabilities:
 
-## Features
+- 🧼 Clean HTML (JavaScript and CSS removed)
+- 📝 LLM-friendly Markdown conversion
+- 🚫 Ad-free, cookie banner-free, and dialog-free content
+- 📸 Website screenshots (auto-saved to AWS S3 or Cloudflare R2)
+- 🤖 LLM-generated SEO-friendly content
+- 🔑 LLM-extracted key information (summary, features, FAQs, etc.)
+- 🧠 Ready-to-use embeddings for vector database integration (auto-saved to db)
 
-- clean html without js and css.
-- LLM input friendly markdown
-- no ads, cookie banner or dialog.
-- screenshot of website, auto saved to aws s3 or cloudflare r2
-- LLM generated seo friendly content of url
-- LLM extracted key infomation like what, summary, features, faqs of url
-- readly to use embeddings to build your vector database, (auto saved to database maybe)
-
-## Install
+## 🔧 Installation
 
 ```bash
 pnpm i
 pnpm exec playwright install
 ```
 
-## Run
+## 🚀 Usage
 
 ```bash
 pnpm dev
 node scripts/test.js
 ```
+
+## 📦 API Response Structure
+
+```json
+{
+  "clean_html": "...",
+  "LLM_friendly_markdown": "...",
+  "clean_text": "...",
+  "screenshot_url": "...",
+  "llm_extracts_key_info": {
+    "what": "...",
+    "summary": "...",
+    "features": ["...", "..."],
+    "faqs": [{"q": "...", "a": "..."}]
+  },
+  "llm_summarized_detail": "...",
+  "embeddings": [...]
+}
+```
+
+## 📚 Documentation
+
+TODO
+
+## 🤝 Contributing
+
+TODO

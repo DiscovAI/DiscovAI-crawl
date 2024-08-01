@@ -1,15 +1,14 @@
 {
   "name": "discovai-crawl",
   "version": "1.0.0",
-  "description": "scraper api with playwright",
+  "description": "DiscovAI Crawl API: A powerful web scraping solution for AI tools and vector databases. Extract clean HTML, generate LLM-friendly content, and create embeddings from any URL.",
   "main": "api.ts",
   "private": "true",
   "scripts": {
-    "start": "node dist/api.js",
+    "start": "node dist/index.js",
     "build": "tsc",
     "dev": "nodemon"
   },
-  "license": "ISC",
   "dependencies": {
     "@ai-sdk/openai": "^0.0.40",
     "@aws-sdk/client-s3": "^3.621.0",
