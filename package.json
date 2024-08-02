@@ -18,6 +18,7 @@
     "@types/jsdom": "^21.1.7",
     "ai": "^3.2.44",
     "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "joplin-turndown-plugin-gfm": "^1.0.12",

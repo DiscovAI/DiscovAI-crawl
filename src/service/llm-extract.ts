@@ -7,16 +7,22 @@ import {
 import z from "zod";
 import { ExtractPrompt, SEOWriterPrompt } from "../helpers/prompt";
 import { openai } from "../lib/llm-provider";
+import { generateMarkdownFromJson } from "../helpers/schema-json-to-md";
 
 const model = openai("gpt-4o-mini");
 
-const defaultExtractSchema = z.object({
+export const defaultExtractSchema = z.object({
   webpage: z.object({
     title: z.string(),
     summary: z.string(),
     keywords: z.array(z.string()),
-    howToUse: z.string(),
-    features: z.array(z.string()),
+    howToUse: z.string().optional(),
+    features: z.array(
+      z.object({
+        title: z.string(),
+        detail: z.string(),
+      })
+    ),
     faq: z.array(z.object({ q: z.string(), a: z.string() })),
     helpfulTips: z.array(z.string()),
     testimonials: z.array(z.string()).optional(),
@@ -39,7 +45,11 @@ export async function extractFromContent({
   schema,
   prompt,
 }: ExtractParams): Promise<
-  | { type: "success"; data: DefaultExtractedData | AnyExtractData }
+  | {
+      type: "success";
+      data: DefaultExtractedData | AnyExtractData;
+      markdown: string;
+    }
   | { type: "parse-error"; text: string }
   | { type: "validation-error"; value: unknown }
   | { type: "unknown-error"; error: unknown }
@@ -53,7 +63,8 @@ export async function extractFromContent({
       system: _prompt,
       prompt: content,
     });
-    return { type: "success", data: result.object };
+    const markdown = generateMarkdownFromJson(result.object);
+    return { type: "success", data: result.object, markdown };
   } catch (error) {
     if (TypeValidationError.isTypeValidationError(error)) {
       return { type: "validation-error", value: error.value };

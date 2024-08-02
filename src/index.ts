@@ -7,6 +7,7 @@ import {
 } from "./controller/scrape-conroller";
 import { testController } from "./controller/test-controller";
 import { initializeBrowser, shutdownBrowser } from "./lib/browser/playwright";
+import cors from "cors";
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
+app.use(cors());
 
 app.post("/scrape", scrapeMiddlware, scrapeController);
 app.get("/test", testController);

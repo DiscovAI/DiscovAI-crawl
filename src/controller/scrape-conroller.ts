@@ -168,18 +168,18 @@ export const scrapeController = async (req: Request, res: Response) => {
       }))()
     );
   }
-  if (llm_detail) {
-    console.log(`Task: llm generate markdown`);
-    asyncTasks.push(
-      (async () => ({
-        name: "llm_detail",
-        data: await seoWriterFromContent({ content: textContent }),
-      }))()
-    );
-  }
+  // if (llm_detail) {
+  //   console.log(`Task: llm generate markdown`);
+  //   asyncTasks.push(
+  //     (async () => ({
+  //       name: "llm_detail",
+  //       data: await seoWriterFromContent({ content: textContent }),
+  //     }))()
+  //   );
+  // }
 
   const result = await Promise.all(asyncTasks);
-  const screeshotUrl = result.find((r) => r.name === "screenshot")?.data;
+  const screenshotUrl = result.find((r) => r.name === "screenshot")?.data;
   const extractData = result.find((r) => r.name === "llm_extract")?.data;
   const detailData = result.find((r) => r.name === "llm_detail")?.data;
 
@@ -200,18 +200,20 @@ export const scrapeController = async (req: Request, res: Response) => {
   return res.json({
     pageStatusCode,
     pageError,
-    metadata,
-    content: {
-      markdown,
-      textContent,
+    data: {
+      pageMetadata: metadata,
+      content: {
+        text: textContent,
+        markdown,
+      },
+      media: {
+        screenshotUrl,
+      },
+      llmOutput: {
+        json: extractData?.data,
+        markdown: extractData?.markdown,
+      },
+      embeddings,
     },
-    media: {
-      screeshotUrl,
-    },
-    llm_output: {
-      extractData,
-      detailData,
-    },
-    embeddings,
   });
 };
