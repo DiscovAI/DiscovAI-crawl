@@ -20,14 +20,14 @@ Our API provides a comprehensive suite of data extraction and processing capabil
 
 ```bash
 pnpm i
-pnpm exec playwright install
+cd apps/api && pnpm exec playwright install
 ```
 
 ## 🚀 Usage
 
 ```bash
 pnpm dev
-node scripts/test.js
+open http://localhost:3000
 ```
 
 ## 📦 API Response Structure
